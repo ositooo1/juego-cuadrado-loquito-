@@ -1,10 +1,45 @@
-function setup(){
-createCanvas(800, 600);
-
+let posQx = 370;
+let posQy = 675;
+let puntos = 0;
+let vidas = 5;
+let Ex = 0;
+let Ey = 0;
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  Ex = random(0, windowWidth - 10);
 }
 
-function draw(){
-background(0)
+function draw() {
+  background(250, 219, 216);
+  fill(44, 62, 80);
+  square(posQx, posQy, 50);
+  textSize(25);
+  text("Puntos: " + puntos, 720, 50);
+  textSize(25);
+  text("Vidas: " + vidas, 720, 75);
 
-square(570, 380, 20)
+  if (keyIsDown(68) === true) {
+    posQx += 10;
+  }
+  if (keyIsDown(65) === true) {
+    posQx -= 10;
+  }
+  if (posQx > windowWidth - 52) {
+    posQx -= 10;
+  }
+
+  fill(171, 235, 198);
+  ellipse(Ex, Ey, 30);
+  Ey += 6;
+  if (Ey > windowHeight) {
+    Ey = 0;
+    elli();
+  }
+  if (Ex === posQx) {
+    vidas -= 1;
+  }
+}
+
+function elli() {
+  Ex = random(0, windowWidth - 10);
 }
